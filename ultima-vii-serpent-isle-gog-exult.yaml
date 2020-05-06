@@ -1,0 +1,33 @@
+name: "Ultima VII Part Two: Serpent Isle"
+game_slug: ultima-vii-serpent-isle
+version: GOG + Exult 1.6
+slug: ultima-vii-serpent-isle-gog-exult-16
+runner: linux
+year: 1993
+
+script:
+  files:
+  - exult_engine: https://lutris.nyc3.digitaloceanspaces.com/games/exult/exult-1.6-x86_64.tar.xz
+  - exult_cfg: https://git.sr.ht/~alessivs/lutricks/blob/master/Ultima%20VII%20-%20Serpent%20Isle/exult.cfg
+  - exult_audio: https://lutris.nyc3.digitaloceanspaces.com/games/exult/exult_audio.zip
+  - innoextracttarball: https://constexpr.org/innoextract/files/innoextract-1.8/innoextract-1.8-linux.tar.xz
+  - ultima7si_gog: N/A:Select the GOG installer
+  game:
+    args: -c $GAMEDIR/exult.cfg
+    exe: exult
+  installer:
+  - extract:
+      dst: $CACHE
+      file: $innoextracttarball
+  - execute:
+      args: -d "$GAMEDIR/serpentisle" "$ultima7si_gog"
+      file: $CACHE/innoextract
+  - extract:
+      dst: $GAMEDIR
+      file: exult_engine
+  - extract:
+      dst: $GAMEDIR/data
+      file: exult_audio
+  - move:
+      dst: $GAMEDIR
+      src: exult_cfg
