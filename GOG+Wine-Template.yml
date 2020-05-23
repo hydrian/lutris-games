@@ -1,0 +1,21 @@
+files:
+- GOG_INSTALLER: N/A:Please select the GOG installer
+game:
+  gogid: 1207664053
+  arch: win32
+  prefix: $GAMEDIR
+installer:
+- task:
+   arch: win32
+   name: create_prefix
+   prefix: $GAMEDIR
+- task:
+   arch: win32
+   name: winetricks
+   prefix: $GAMEDIR
+   apps: corefonts 
+system: {}
+wine:
+   version: tkg-protonified
+
+
