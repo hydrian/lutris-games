@@ -8,22 +8,16 @@ game:
 installer:
 - task:
     arch: win32
-    name: create_prefix
-    prefix: $GAMEDIR
     install_gecko: false
     install_mono: false
+    name: create_prefix
+    prefix: $GAMEDIR
 - task:
     app: corefonts ariel
     arch: win32
     description: Installing fonts
     name: winetricks
     prefix: $GAMEDIR
-- task:
-    key: Version
-    name: set_regedit
-    path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\TIMWIN.EXE
-    prefix: $GAMEDIR
-    value: win95
 - task:
     arch: win32
     args: /SUPPRESSMSGBOXES /SP-
@@ -40,5 +34,5 @@ installer:
 - task:
     name: winekill
     prefix: $GAMEDIR
-system: 
-   exclude_processes: HELP.EXE help.exe
+system:
+  exclude_processes: HELP.EXE help.exe winevdm.exe
