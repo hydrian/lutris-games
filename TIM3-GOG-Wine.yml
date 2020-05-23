@@ -17,6 +17,12 @@ installer:
    prefix: $GAMEDIR
    app: corefonts ariel
 - task:
+    key: Version
+    name: set_regedit
+    path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\TIMWIN.EXE
+    prefix: $GAMEDIR
+    value: win95
+- task:
    description: 'Running GOG Installer'
    arch: win32
    executable: GOG_INSTALLER
