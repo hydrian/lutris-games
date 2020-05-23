@@ -1,28 +1,33 @@
 files:
 - GOG_INSTALLER: N/A:Please select the GOG installer
-- INNO_INSTALLER: https://constexpr.org/innoextract/files/innoextract-1.8/innoextract-1.8-linux.tar.xz
 game:
-  gogid: 0
+  gogid: 1207664053
   arch: win32
   prefix: $GAMEDIR
+  exe: drive_c/GOG Games/TIM 3/TIMWIN.EXE
 installer:
-- extract:
-    dst: $CACHE
-    file: $INNO_INSTALLER
-- execute:
-    args: -d "$CACHE" "$GOG_INSTALLER"
-    file: $CACHE/innoextract
 - task:
    arch: win32
    name: create_prefix
    prefix: $GAMEDIR
 - task:
+   description: 'Installing fonts'
    arch: win32
    name: winetricks
    prefix: $GAMEDIR
-   apps: 
+   app: corefonts ariel
+- task:
+   description: 'Running GOG Installer'
+   arch: win32
+   executable: GOG_INSTALLER
+   prefix: $GAMEDIR
+   name: wineexec
+   args: /SUPPRESSMSGBOXES /SP-
+- task:
+    name: winekill
+    prefix: $GAMEDIR
 system: {}
-wine:
-   version: 0
+
+   
 
 
