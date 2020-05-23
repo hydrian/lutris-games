@@ -1,33 +1,42 @@
 files:
 - GOG_INSTALLER: N/A:Please select the GOG installer
 game:
-  gogid: 1207664053
   arch: win32
-  prefix: $GAMEDIR
   exe: drive_c/GOG Games/TIM 3/TIMWIN.EXE
+  gogid: 1207664053
+  prefix: $GAMEDIR
 installer:
 - task:
-   arch: win32
-   name: create_prefix
-   prefix: $GAMEDIR
+    arch: win32
+    name: create_prefix
+    prefix: $GAMEDIR
 - task:
-   description: 'Installing fonts'
-   arch: win32
-   name: winetricks
-   prefix: $GAMEDIR
-   app: corefonts ariel
+    app: corefonts ariel
+    arch: win32
+    description: Installing fonts
+    name: winetricks
+    prefix: $GAMEDIR
 - task:
-   description: 'Running GOG Installer'
-   arch: win32
-   executable: GOG_INSTALLER
-   prefix: $GAMEDIR
-   name: wineexec
-   args: /SUPPRESSMSGBOXES /SP-
+    key: Version
+    name: set_regedit
+    path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\TIMWIN.EXE
+    prefix: $GAMEDIR
+    value: win95
+- task:
+    arch: win32
+    args: /SUPPRESSMSGBOXES /SP-
+    description: Running GOG Installer
+    executable: GOG_INSTALLER
+    name: wineexec
+    prefix: $GAMEDIR
+- task:
+    key: Version
+    name: set_regedit
+    path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\TIMWIN.EXE
+    prefix: $GAMEDIR
+    value: win95
 - task:
     name: winekill
     prefix: $GAMEDIR
-system: {}
-
-   
-
-
+system: 
+   exclude_processes: HELP.EXE
