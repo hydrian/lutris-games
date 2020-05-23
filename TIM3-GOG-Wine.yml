@@ -25,6 +25,7 @@ installer:
     prefix: $GAMEDIR
     value: win95
 - task:
+<<<<<<< HEAD
     arch: win32
     args: /SUPPRESSMSGBOXES /SP-
     description: Running GOG Installer
@@ -37,6 +38,14 @@ installer:
     path: HKEY_CURRENT_USER\Software\Wine\AppDefaults\TIMWIN.EXE
     prefix: $GAMEDIR
     value: win95
+=======
+   description: 'Running GOG Installer'
+   arch: win32
+   executable: GOG_INSTALLER
+   prefix: $GAMEDIR
+   name: wineexec
+   args: /SUPPRESSMSGBOXES /SP-
+>>>>>>> branch 'master' of https://github.com/hydrian/lutris-games.git
 - task:
     name: winekill
     prefix: $GAMEDIR
