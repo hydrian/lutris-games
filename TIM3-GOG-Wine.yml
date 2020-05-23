@@ -10,6 +10,8 @@ installer:
     arch: win32
     name: create_prefix
     prefix: $GAMEDIR
+    install_gecko: false
+    install_mono: false
 - task:
     app: corefonts ariel
     arch: win32
