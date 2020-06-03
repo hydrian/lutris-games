@@ -1,0 +1,41 @@
+files:
+- GOG_INSTALLER: N/A:Please select the GOG installer
+- INNO_INSTALLER: https://constexpr.org/innoextract/files/innoextract-1.8/innoextract-1.8-linux.tar.xz
+game:
+  config_file: $GAMEDIR/dosboxULTIMA6.conf
+  gogid: 0
+installer:
+- extract:
+    dst: $CACHE
+    file: $INNO_INSTALLER
+- execute:
+    args: -d "$CACHE" "$GOG_INSTALLER"
+    file: $CACHE/innoextract
+- merge:
+    dst: $GAMEDIR
+    src: $CACHE
+- merge:
+    dst: $GAMEDIR/dosboxULTIMA6_single.conf
+    src: $GAMEDIR/__support/app/dosboxULTIMA6.conf
+- merge:
+    dst: $GAMEDIR/DOSBOX
+    src: $GAMEDIR/__support/app/dosboxULTIMA6_single.conf
+- merge:
+    dst: $GAMEDIR
+    src: $GAMEDIR/__support/save/
+- write_config:
+    file: $GAMEDIR/dosboxULTIMA6.conf
+    key: aspect
+    section: render
+    value: true
+- write_config:
+    file: $GAMEDIR/dosboxULTIMA6.conf
+    key: fullscreen
+    section: sdl
+    value: false
+- write_config:
+    file: $GAMEDIR/dosboxULTIMA6.conf
+    key: autolock
+    section: sdl
+    value: false
+main_file: $GAMEDIR/DOSBOX/dosboxULTIMA6_single.conf
