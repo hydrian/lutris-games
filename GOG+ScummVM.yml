@@ -4,6 +4,7 @@ files:
 game:
   game_id: ''
   gogid: 0
+  path: $GAMEDIR
 installer:
 - extract:
     dst: $CACHE
