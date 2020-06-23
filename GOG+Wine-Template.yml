@@ -1,21 +1,31 @@
 files:
 - GOG_INSTALLER: N/A:Please select the GOG installer
 game:
-  gogid: 1207664053
+  gogid: 00000000
   arch: win32
+  exe: {GAME EXE}
   prefix: $GAMEDIR
 installer:
 - task:
    arch: win32
+   install_gecko: false
+   install_mono: false
    name: create_prefix
    prefix: $GAMEDIR
 - task:
-   arch: win32
-   name: winetricks
-   prefix: $GAMEDIR
-   apps: corefonts 
-system: {}
-wine:
-   version: tkg-protonified
+    app: corefonts ariel
+    arch: win32
+    description: Installing fonts
+    name: winetricks
+    prefix: $GAMEDIR
+- task:
+    arch: win32
+    args: /SUPPRESSMSGBOXES /SP-
+    description: Running GOG Installer
+    executable: GOG_INSTALLER
+    name: wineexec
+    prefix: $GAMEDIR 
+system:
+  exclude_processes: HELP.EXE help.exe winevdm.exe
 
 
