@@ -6,12 +6,19 @@ game:
   gogid: 0
   path: $GAMEDIR
 installer:
-- extract:
-    dst: $CACHE
-    file: $INNO_INSTALLER
-- execute:
-    args: -d "$CACHE" "$GOG_INSTALLER"
-    file: $CACHE/innoextract
-- merge:
-    dst: $GAMEDIR
-    src: $CACHE
+installer:
+    - input_menu:
+        description: Choose available game language
+        id: LANG
+        options:
+        - en-US: "English"
+        preselect: en-US
+    - extract:
+        dst: $CACHE
+        file: $INNO_INSTALLER
+    - execute:
+        args: --language "$INPUT_LANG" -d "$CACHE" "$GOG_INSTALLER"
+        file: $CACHE/innoextract
+    - merge:
+        dst: $GAMEDIR
+        src: $CACHE
